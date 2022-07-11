@@ -1,8 +1,15 @@
 import swapiGetter from './swapiGetter';
 import mockAxios from 'axios';
 
-jest.mock('axios');
-mockAxios.get.mockResolvedValue({ data: { name: 'Luke Skywalker' } });
+jest.mock('axios', () => ({
+  // needed if using import over require
+  __esModule: true,
+  default: {
+    get: jest.fn().mockResolvedValue({ data: { name: 'Luke Skywalker' }})
+  }
+}));
+
+// mockAxios.get.mockResolvedValue({ data: { name: 'Luke Skywalker' } });
 
 describe('swapiGetter', () => {
   // clear the cache between tests
