@@ -2,9 +2,7 @@ import swapiGetter from './swapiGetter';
 import mockAxios from 'axios';
 
 jest.mock('axios');
-mockAxios.get.mockImplementation(
-  ()=> Promise.resolve({ data: { name: 'Luke Skywalker' } })
-)
+mockAxios.get.mockResolvedValue({ data: { name: 'Luke Skywalker' } });
 
 describe('swapiGetter', () => {
   test('should return a name', async () => {
