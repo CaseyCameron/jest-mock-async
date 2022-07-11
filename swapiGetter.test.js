@@ -5,6 +5,9 @@ jest.mock('axios');
 mockAxios.get.mockResolvedValue({ data: { name: 'Luke Skywalker' } });
 
 describe('swapiGetter', () => {
+  // clear the cache between tests
+  afterEach(() => jest.clearAllMocks);
+
   test('should return a name', async () => {
     const result = await swapiGetter(1);
     console.log('result', result)
